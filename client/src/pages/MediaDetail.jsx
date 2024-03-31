@@ -91,7 +91,7 @@ const MediaDetail = () => {
     if (response) {
       dispatch(addFavorite(response));
       setIsFavorite(true);
-      toast.success("Add favorite success");
+      toast.success("Амжилттай нэмлээ");
     }
   };
 
@@ -109,7 +109,7 @@ const MediaDetail = () => {
     if (response) {
       dispatch(removeFavorite(favorite));
       setIsFavorite(false);
-      toast.success("Remove favorite success");
+      toast.success("Амжилттай хаслаа");
     }
   };
 
@@ -207,7 +207,7 @@ const MediaDetail = () => {
                       startIcon={<PlayArrowIcon />}
                       onClick={() => videoRef.current.scrollIntoView()}
                     >
-                      watch now
+                      Үзэх
                     </Button>
                   </Stack>
                   {/* buttons */}
@@ -226,7 +226,7 @@ const MediaDetail = () => {
 
           {/* media videos */}
           <div ref={videoRef} style={{ paddingTop: "2rem" }}>
-            <Container header="Videos">
+            <Container header="Бичлэг">
               <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} />
             </Container>
           </div>
@@ -234,7 +234,7 @@ const MediaDetail = () => {
 
           {/* media backdrop */}
           {media.images.backdrops.length > 0 && (
-            <Container header="backdrops">
+            <Container header="Зургууд">
               <BackdropSlide backdrops={media.images.backdrops} />
             </Container>
           )}
@@ -242,7 +242,7 @@ const MediaDetail = () => {
 
           {/* media posters */}
           {media.images.posters.length > 0 && (
-            <Container header="posters">
+            <Container header="Постерууд">
               <PosterSlide posters={media.images.posters} />
             </Container>
           )}
@@ -253,7 +253,7 @@ const MediaDetail = () => {
           {/* media reviews */}
 
           {/* media recommendation */}
-          <Container header="you may also like">
+          <Container header="Санал болгох">
             {media.recommend.length > 0 && (
               <RecommendSlide medias={media.recommend} mediaType={mediaType} />
             )}

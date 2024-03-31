@@ -48,7 +48,7 @@ const SignupForm = ({ switchAuthState }) => {
         signinForm.resetForm();
         dispatch(setUser(response));
         dispatch(setAuthModalOpen(false));
-        toast.success("Sign in success");
+        toast.success("Амжилттай нэвтэрлээ");
       }
 
       if (err) setErrorMessage(err.message);
@@ -60,7 +60,7 @@ const SignupForm = ({ switchAuthState }) => {
       <Stack spacing={3}>
         <TextField
           type="text"
-          placeholder="username"
+          placeholder="нэвтрэх нэр"
           name="username"
           fullWidth
           value={signinForm.values.username}
@@ -71,7 +71,7 @@ const SignupForm = ({ switchAuthState }) => {
         />
         <TextField
           type="text"
-          placeholder="display name"
+          placeholder="харагдах нэр"
           name="displayName"
           fullWidth
           value={signinForm.values.displayName}
@@ -82,7 +82,7 @@ const SignupForm = ({ switchAuthState }) => {
         />
         <TextField
           type="password"
-          placeholder="password"
+          placeholder="нууц үг"
           name="password"
           fullWidth
           value={signinForm.values.password}
@@ -93,7 +93,7 @@ const SignupForm = ({ switchAuthState }) => {
         />
         <TextField
           type="password"
-          placeholder="confirm password"
+          placeholder="нууц үг давтах"
           name="confirmPassword"
           fullWidth
           value={signinForm.values.confirmPassword}

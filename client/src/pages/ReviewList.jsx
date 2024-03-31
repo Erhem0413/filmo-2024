@@ -24,7 +24,7 @@ const ReviewItem = ({ review, onRemoved }) => {
 
     if (err) toast.error(err.message);
     if (response) {
-      toast.success("Remove review success");
+      toast.success("Сэтгэгдэл амжилттай хаслаа");
       onRemoved(review.id);
     }
   };
@@ -86,7 +86,7 @@ const ReviewItem = ({ review, onRemoved }) => {
         loading={onRequest}
         onClick={onRemove}
       >
-        remove
+        хасах
       </LoadingButton>
     </Box>
   );
@@ -135,7 +135,7 @@ const ReviewList = () => {
 
   return (
     <Box sx={{ ...uiConfigs.style.mainContent }}>
-      <Container header={`Your reviews (${count})`}>
+      <Container header={`Таны сэтгэгдлүүд (${count})`}>
         <Stack spacing={2}>
           {filteredReviews.map((item) => (
             <Box key={item.id}>

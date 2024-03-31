@@ -63,7 +63,7 @@ const ReviewItem = ({ review, onRemoved }) => {
                 width: "max-content"
               }}
             >
-              remove
+              хасах
             </LoadingButton>
           )}
         </Stack>
@@ -107,7 +107,7 @@ const MediaReview = ({ reviews, media, mediaType }) => {
 
     if (err) toast.error(err.message);
     if (response) {
-      toast.success("Post review success");
+      toast.success("Сэтгэгдэл амжилттай  орлоо");
 
       setFilteredReviews([...filteredReviews, response]);
       setReviewCount(reviewCount + 1);
@@ -131,12 +131,12 @@ const MediaReview = ({ reviews, media, mediaType }) => {
 
     setReviewCount(reviewCount - 1);
 
-    toast.success("Remove review success");
+    toast.success("Сэтгэгдэл амжилттай хаслаа");
   };
 
   return (
     <>
-      <Container header={`Reviews (${reviewCount})`}>
+      <Container header={`Сэтгэгдлүүд (${reviewCount})`}>
         <Stack spacing={4} marginBottom={2}>
           {filteredReviews.map((item) => (
             item.user ? <Box key={item.id}>
@@ -164,7 +164,7 @@ const MediaReview = ({ reviews, media, mediaType }) => {
                   onChange={(e) => setContent(e.target.value)}
                   multiline
                   rows={4}
-                  placeholder="Write your review"
+                  placeholder="Сэтгэгдлээ бичнэ үү"
                   variant="outlined"
                 />
                 <LoadingButton
@@ -176,7 +176,7 @@ const MediaReview = ({ reviews, media, mediaType }) => {
                   loading={onRequest}
                   onClick={onAddReview}
                 >
-                  post
+                  нийтлэх
                 </LoadingButton>
               </Stack>
             </Stack>

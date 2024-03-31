@@ -53,18 +53,18 @@ const PasswordUpdate = () => {
       navigate("/");
       dispatch(setUser(null));
       dispatch(setAuthModalOpen(true));
-      toast.success("Update password success! Please re-login");
+      toast.success("Амжилттай шинэ нууц үг үүслээ. Дахин нэвтэрнэ үү");
     }
   };
 
   return (
     <Box sx={{ ...uiConfigs.style.mainContent }}>
-      <Container header="update password">
+      <Container header="нууц үг шинэчлэх">
         <Box component="form" maxWidth="400px" onSubmit={form.handleSubmit}>
           <Stack spacing={2}>
             <TextField
               type="password"
-              placeholder="password"
+              placeholder="хуучин нууц үг"
               name="password"
               fullWidth
               value={form.values.password}
@@ -75,7 +75,7 @@ const PasswordUpdate = () => {
             />
             <TextField
               type="password"
-              placeholder="new password"
+              placeholder="шинэ нууц үг"
               name="newPassword"
               fullWidth
               value={form.values.newPassword}
@@ -86,7 +86,7 @@ const PasswordUpdate = () => {
             />
             <TextField
               type="password"
-              placeholder="confirm new password"
+              placeholder="шинэ нууц үг давтах"
               name="confirmNewPassword"
               fullWidth
               value={form.values.confirmNewPassword}
@@ -103,7 +103,7 @@ const PasswordUpdate = () => {
               sx={{ marginTop: 4 }}
               loading={onRequest}
             >
-              update password
+              нууц үг шинэчлэх
             </LoadingButton>
           </Stack>
         </Box>

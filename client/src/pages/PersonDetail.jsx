@@ -66,7 +66,7 @@ const PersonDetail = () => {
                 </Stack>
               </Box>
             </Box>
-            <Container header="medias">
+            <Container header="Санал болгох">
               <PersonMediaGrid personId={personId} />
             </Container>
           </Box>

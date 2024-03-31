@@ -12,19 +12,19 @@ const HomePage = () => {
       <HeroSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
 
       <Box marginTop="-4rem" sx={{ ...uiConfigs.style.mainContent }}>
-        <Container header="popular movies">
+        <Container header="шинэ кино">
           <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
         </Container>
 
-        <Container header="popular series">
+        <Container header="шинэ олон ангит">
           <MediaSlide mediaType={tmdbConfigs.mediaType.tv} mediaCategory={tmdbConfigs.mediaCategory.popular} />
         </Container>
 
-        <Container header="top rated movies">
+        <Container header="үнэлгээ өндөртэй кино">
           <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.top_rated} />
         </Container>
 
-        <Container header="top rated series">
+        <Container header="үнэлгээ өндөртэй олон ангит">
           <MediaSlide mediaType={tmdbConfigs.mediaType.tv} mediaCategory={tmdbConfigs.mediaCategory.top_rated} />
         </Container>
       </Box>

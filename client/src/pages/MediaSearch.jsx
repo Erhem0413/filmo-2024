@@ -6,7 +6,7 @@ import mediaApi from "../api/modules/media.api";
 import MediaGrid from "../components/common/MediaGrid";
 import uiConfigs from "../configs/ui.configs";
 
-const mediaTypes = ["movie", "tv", "people"];
+const mediaTypes = ["кино", "олон ангит", "жүжигчид"];
 let timer;
 const timeout = 500;
 
@@ -88,7 +88,7 @@ const MediaSearch = () => {
           </Stack>
           <TextField
             color="success"
-            placeholder="Search MoonFlix"
+            placeholder="Хайх"
             sx={{ width: "100%" }}
             autoFocus
             onChange={onQueryChange}
@@ -101,7 +101,7 @@ const MediaSearch = () => {
               loading={onSearch}
               onClick={() => setPage(page + 1)}
             >
-              load more
+              Ачааллах
             </LoadingButton>
           )}
         </Stack>

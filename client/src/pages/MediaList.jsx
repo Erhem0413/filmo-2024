@@ -12,7 +12,8 @@ import { setAppState } from "../redux/features/appStateSlice";
 import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
 import { toast } from "react-toastify";
 import usePrevious from "../hooks/usePrevious";
-
+import Container from "../components/common/Container";
+import MediaSlide from "../components/common/MediaSlide";
 const MediaList = () => {
   const { mediaType } = useParams();
 
@@ -24,8 +25,8 @@ const MediaList = () => {
   const prevMediaType = usePrevious(mediaType);
   const dispatch = useDispatch();
 
-  const mediaCategories = useMemo(() => ["popular", "top_rated"], []);
-  const category = ["popular", "top rated"];
+  const mediaCategories = useMemo(() => ["popular", "top_rated","comedy"], []);
+  const category = ["шинэ", "үнэлгээ өндөртэй"];
 
   useEffect(() => {
     dispatch(setAppState(mediaType));
@@ -81,6 +82,9 @@ const MediaList = () => {
     <>
       <HeroSlide mediaType={mediaType} mediaCategory={mediaCategories[currCategory]} />
       <Box sx={{ ...uiConfigs.style.mainContent }}>
+        <Container header="шинэ кино">
+          <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.comedy} />
+        </Container>
         <Stack
           spacing={2}
           direction={{ xs: "column", md: "row" }}
@@ -89,7 +93,7 @@ const MediaList = () => {
           sx={{ marginBottom: 4 }}
         >
           <Typography fontWeight="700" variant="h5">
-            {mediaType === tmdbConfigs.mediaType.movie ? "Movies" : "TV Series"}
+            {mediaType === tmdbConfigs.mediaType.movie ? "Кино" : "Олон ангит"}
           </Typography>
           <Stack direction="row" spacing={2}>
             {category.map((cate, index) => (
@@ -118,7 +122,7 @@ const MediaList = () => {
           loading={mediaLoading}
           onClick={onLoadMore}
         >
-          load more
+          Ачааллах
         </LoadingButton>
       </Box>
     </>

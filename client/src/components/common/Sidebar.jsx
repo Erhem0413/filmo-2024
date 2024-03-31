@@ -32,7 +32,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
         </Stack>
       </Toolbar>
       <List sx={{ paddingX: "30px" }}>
-        <Typography variant="h6" marginBottom="20px">MENU</Typography>
+        <Typography variant="h6" marginBottom="20px">ЦЭС</Typography>
         {menuConfigs.main.map((item, index) => (
           <ListItemButton
             key={index}
@@ -53,7 +53,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
         ))}
 
         {user && (<>
-          <Typography variant="h6" marginBottom="20px">PERSONAL</Typography>
+          <Typography variant="h6" marginBottom="20px">ХУВИЙН</Typography>
           {menuConfigs.user.map((item, index) => (
             <ListItemButton
               key={index}
@@ -74,7 +74,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
           ))}
         </>)}
 
-        <Typography variant="h6" marginBottom="20px">THEME</Typography>
+        <Typography variant="h6" marginBottom="20px">ХАРАГДАЦ</Typography>
         <ListItemButton onClick={onSwitchTheme}>
           <ListItemIcon>
             {themeMode === themeModes.dark && <DarkModeOutlinedIcon />}
