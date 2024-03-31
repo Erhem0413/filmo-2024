@@ -8,25 +8,25 @@ import LockResetOutlinedIcon from "@mui/icons-material/LockResetOutlined";
 
 const main = [
   {
-    display: "home",
+    display: "Нүүр",
     path: "/",
     icon: <HomeOutlinedIcon />,
     state: "home"
   },
   {
-    display: "movies",
+    display: "кинонууд",
     path: "/movie",
     icon: <SlideshowOutlinedIcon />,
     state: "movie"
   },
   {
-    display: "tv series",
+    display: "олон ангит",
     path: "/tv",
     icon: <LiveTvOutlinedIcon />,
     state: "tv"
   },
   {
-    display: "search",
+    display: "Хайх",
     path: "/search",
     icon: <SearchOutlinedIcon />,
     state: "search"

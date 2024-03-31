@@ -1,22 +1,22 @@
 {
-  "name": "mern-stack-movie-2022",
+  "name": "filmo",
   "type": "module",
   "version": "0.0.1",
-  "author": "tuat tran anh",
+  "author": "erkhembileg",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "axios": "^1.2.0",
+    "axios": "^1.6.8",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-validator": "^6.14.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^6.15.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.7.5",
-    "nodemon": "^2.0.20"
+    "mongoose": "^6.12.7",
+    "nodemon": "^2.0.22"
   }
 }

@@ -41,7 +41,7 @@ const FavoriteItem = ({ media, onRemoved }) => {
       loading={onRequest}
       onClick={onRemove}
     >
-      remove
+      хасах
     </LoadingButton>
   </>);
 };
