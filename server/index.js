@@ -34,3 +34,5 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
     console.error("MongoDB connection error:", err);
     process.exit(1);
   });
+
+  // Энэ код нь Express болон Mongoose-г ашиглан Node.js серверийг тохируулж, MongoDB ашиглан RESTful API үүсгэнэ. Энэ нь дунд програмыг эхлүүлж, API чиглүүлэлтүүдийг холбож, MongoDB-тэй холбогдож, серверийг заасан порт дээр сонсож эхэлдэг.

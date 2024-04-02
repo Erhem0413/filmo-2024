@@ -25,7 +25,7 @@ const MediaList = () => {
   const prevMediaType = usePrevious(mediaType);
   const dispatch = useDispatch();
 
-  const mediaCategories = useMemo(() => ["popular", "top_rated","comedy"], []);
+  const mediaCategories = useMemo(() => ["popular", "top_rated"], []);
   const category = ["шинэ", "үнэлгээ өндөртэй"];
 
   useEffect(() => {
@@ -82,9 +82,9 @@ const MediaList = () => {
     <>
       <HeroSlide mediaType={mediaType} mediaCategory={mediaCategories[currCategory]} />
       <Box sx={{ ...uiConfigs.style.mainContent }}>
-        <Container header="шинэ кино">
-          <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.comedy} />
-        </Container>
+        {/* <Container header="шинэ кино">
+          <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
+        </Container> */}
         <Stack
           spacing={2}
           direction={{ xs: "column", md: "row" }}

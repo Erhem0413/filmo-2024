@@ -2,7 +2,7 @@ const responseWithData = (res, statusCode, data) => res.status(statusCode).json(
 
 const error = (res) => responseWithData(res, 500, {
   status: 500,
-  message: "Oops! Something worng!"
+  message: "Sha512!"
 });
 
 const badrequest = (res, message) => responseWithData(res, 400, {
