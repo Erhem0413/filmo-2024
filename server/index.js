@@ -19,11 +19,11 @@ app.use(cookieParser());
 
 app.use("/api/v1", routes);
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 3001;
 
 const server = http.createServer(app);
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/filmox', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("MongoDB connected");
     server.listen(port, () => {
