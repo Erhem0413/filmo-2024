@@ -82,9 +82,9 @@ const MediaList = () => {
     <>
       <HeroSlide mediaType={mediaType} mediaCategory={mediaCategories[currCategory]} />
       <Box sx={{ ...uiConfigs.style.mainContent }}>
-        {/* <Container header="шинэ кино">
+        <Container header="шинэ кино">
           <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
-        </Container> */}
+        </Container>
         <Stack
           spacing={2}
           direction={{ xs: "column", md: "row" }}

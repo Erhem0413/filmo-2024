@@ -5,6 +5,7 @@ import http from "http";
 import mongoose from "mongoose";
 import dotenv from "dotenv"; 
 import routes from "./src/routes/index.js";
+import { log } from "console";
 
 dotenv.config();
 

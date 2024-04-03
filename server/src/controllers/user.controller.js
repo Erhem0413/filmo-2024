@@ -20,7 +20,7 @@ const signup = async (req, res) => {
 
     const token = jsonwebtoken.sign(
       { data: user.id },
-      process.env.TOKEN_SECRET,
+      process.env.TOKEN_SECRET || 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTQyNDJmNTU5ZjhlYjc3Nzg3NGRiNjQ1NDYzNjA2OSIsInN1YiI6IjY2MDhkNTc1ZjkxODNhMDE0YzQ3NWQyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SG6wUcoh9IwQqMaVpw49W1Bo_nD4jq3V-LVt1q8CJ4M',
       { expiresIn: "24h" }
     );
 
@@ -46,7 +46,7 @@ const signin = async (req, res) => {
 
     const token = jsonwebtoken.sign(
       { data: user.id },
-      process.env.TOKEN_SECRET,
+      process.env.TOKEN_SECRET || 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNTQyNDJmNTU5ZjhlYjc3Nzg3NGRiNjQ1NDYzNjA2OSIsInN1YiI6IjY2MDhkNTc1ZjkxODNhMDE0YzQ3NWQyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SG6wUcoh9IwQqMaVpw49W1Bo_nD4jq3V-LVt1q8CJ4M',
       { expiresIn: "24h" }
     );
 
