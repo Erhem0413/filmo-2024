@@ -11,6 +11,9 @@ const tmdbApi = {
   mediaGenres: async ({ mediaType }) => await axiosClient.get(
     tmdbEndpoints.mediaGenres({ mediaType })
   ),
+  movieGenresList: async () => await axiosClient.get(
+    tmdbEndpoints.movieGenresList()
+  ),
   mediaCredits: async ({ mediaType, mediaId }) => await axiosClient.get(
     tmdbEndpoints.mediaCredits({ mediaType, mediaId })
   ),

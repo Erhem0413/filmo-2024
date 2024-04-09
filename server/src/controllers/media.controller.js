@@ -20,13 +20,12 @@ const getList = async (req, res) => {
 
 const getGenres = async (req, res) => {
   try {
-    const { mediaType } = req.params;
 
-    const response = await tmdbApi.mediaGenres({ mediaType });
+    const response = await tmdbApi.movieGenresList();
 
     return responseHandler.ok(res, response);
-  } catch {
-    responseHandler.error(res);
+  } catch (error) {
+    return responseHandler.error(res, error.message);
   }
 };
 
