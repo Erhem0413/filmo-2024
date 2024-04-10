@@ -44,6 +44,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
 
       if (response) {
         setGenres(response.genres);
+        console.log("Genres:", response.genres);
         getMedias();
       }
       if (err) {

@@ -1,19 +1,17 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Chip } from "@mui/material";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import tmdbConfigs from "../api/configs/tmdb.configs";
 import mediaApi from "../api/modules/media.api";
 import uiConfigs from "../configs/ui.configs";
-import HeroSlide from "../components/common/HeroSlide";
 import MediaGrid from "../components/common/MediaGrid";
 import { setAppState } from "../redux/features/appStateSlice";
 import { setGlobalLoading } from "../redux/features/globalLoadingSlice";
 import { toast } from "react-toastify";
 import usePrevious from "../hooks/usePrevious";
-import Container from "../components/common/Container";
-import MediaSlide from "../components/common/MediaSlide";
+import genreApi from "../api/modules/genre.api";
 const MediaList = () => {
   const { mediaType } = useParams();
 
@@ -22,16 +20,34 @@ const MediaList = () => {
   const [currCategory, setCurrCategory] = useState(0);
   const [currPage, setCurrPage] = useState(1);
 
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState(null);
+
   const prevMediaType = usePrevious(mediaType);
   const dispatch = useDispatch();
-
   const mediaCategories = useMemo(() => ["popular", "top_rated"], []);
-  const category = ["шинэ", "үнэлгээ өндөртэй"];
 
   useEffect(() => {
     dispatch(setAppState(mediaType));
     window.scrollTo(0, 0);
+  
+    const getGenresAndDisplayAction = async () => {
+      dispatch(setGlobalLoading(true));
+      const { response, err } = await genreApi.getList({ mediaType });
+  
+      if (response) {
+        setGenres(response.genres);
+        console.log("Genres:", response.genres);
+        onGenreChange();
+      }
+      if (err) {
+        toast.error(err.message);
+        setGlobalLoading(false);
+      }
+    };
+    getGenresAndDisplayAction();
   }, [mediaType, dispatch]);
+  
 
   useEffect(() => {
     const getMedias = async () => {
@@ -41,7 +57,8 @@ const MediaList = () => {
       const { response, err } = await mediaApi.getList({
         mediaType,
         mediaCategory: mediaCategories[currCategory],
-        page: currPage
+        page: currPage,
+        genre: selectedGenre,
       });
 
       setMediaLoading(false);
@@ -60,31 +77,63 @@ const MediaList = () => {
     }
 
     getMedias();
+
+    const getGenres = async () => {
+      dispatch(setGlobalLoading(true));
+      const { response, err } = await genreApi.getList({ mediaType });
+
+      if (response) {
+        setGenres(response.genres);
+        console.log("Genres:", response.genres);
+        getMedias();
+      }
+      if (err) {
+        toast.error(err.message);
+        setGlobalLoading(false);
+      }
+    };
+    
+    getGenres();
   }, [
     mediaType,
     currCategory,
     prevMediaType,
     currPage,
     mediaCategories,
-    dispatch
+    dispatch,
+    selectedGenre
   ]);
-
   const onCategoryChange = (categoryIndex) => {
     if (currCategory === categoryIndex) return;
     setMedias([]);
     setCurrPage(1);
     setCurrCategory(categoryIndex);
   };
+  console.log("MEDIAS",medias);
 
   const onLoadMore = () => setCurrPage(currPage + 1);
 
+  const onGenreChange = (genreId) => {
+    setSelectedGenre(genreId);
+    setMedias([]);
+    setCurrPage(1);
+  };
+  
+
   return (
     <>
-      <HeroSlide mediaType={mediaType} mediaCategory={mediaCategories[currCategory]} />
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, p: 1,mx: 10 , mt:10}}>
+        {genres.map((genre) => (
+          <Chip
+            key={genre.id}
+            label={genre.name}
+            clickable
+            color={selectedGenre === genre.id ? "primary" : "default"}
+            onClick={() => onGenreChange(genre.id)}
+          />
+        ))}
+      </Box>
       <Box sx={{ ...uiConfigs.style.mainContent }}>
-        <Container header="шинэ кино">
-          <MediaSlide mediaType={tmdbConfigs.mediaType.movie} mediaCategory={tmdbConfigs.mediaCategory.popular} />
-        </Container>
         <Stack
           spacing={2}
           direction={{ xs: "column", md: "row" }}
@@ -95,24 +144,11 @@ const MediaList = () => {
           <Typography fontWeight="700" variant="h5">
             {mediaType === tmdbConfigs.mediaType.movie ? "Кино" : "Олон ангит"}
           </Typography>
-          <Stack direction="row" spacing={2}>
-            {category.map((cate, index) => (
-              <Button
-                key={index}
-                size="large"
-                variant={currCategory === index ? "contained" : "text"}
-                sx={{
-                  color: currCategory === index ? "primary.contrastText" : "text.primary"
-                }}
-                onClick={() => onCategoryChange(index)}
-              >
-                {cate}
-              </Button>
-            ))}
-          </Stack>
         </Stack>
         <MediaGrid
-          medias={medias}
+          medias={medias.filter(media => 
+          selectedGenre ? media.genre_ids.includes(selectedGenre) : true
+        )}
           mediaType={mediaType}
         />
         <LoadingButton
