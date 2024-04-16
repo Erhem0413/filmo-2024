@@ -13,7 +13,10 @@ const SigninForm = ({ switchAuthState }) => {
   const dispatch = useDispatch();
 
   const [isLoginRequest, setIsLoginRequest] = useState(false);
+  const [isResetPasswordRequest, setIsResetPasswordRequest] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
+  const [resetPasswordSuccess, setResetPasswordSuccess] = useState(false);
+
 
   const signinForm = useFormik({
     initialValues: {
@@ -46,6 +49,32 @@ const SigninForm = ({ switchAuthState }) => {
     }
   });
 
+  const resetPasswordForm = useFormik({
+    initialValues: {
+      email: ""
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email is required")
+    }),
+    onSubmit: async values => {
+      setErrorMessage(undefined);
+      setIsResetPasswordRequest(true);
+
+      const { response, err } = await userApi.resetPassword(values.email);
+      setIsResetPasswordRequest(false);
+
+      if (response) {
+        resetPasswordForm.resetForm();
+        setResetPasswordSuccess(true);
+        toast.success("Reset password link sent successfully");
+      }
+
+      if (err) setErrorMessage(err.message);
+    }
+  });
+
   return (
     <Box component="form" onSubmit={signinForm.handleSubmit}>
       <Stack spacing={3}>
@@ -72,6 +101,38 @@ const SigninForm = ({ switchAuthState }) => {
           helperText={signinForm.touched.password && signinForm.errors.password}
         />
       </Stack>
+
+
+      {/* Reset password section */}
+      {resetPasswordSuccess ? (
+        <Alert severity="success">Reset password link sent to your email</Alert>
+      ) : (
+        <>
+          <TextField
+            type="email"
+            placeholder="Email"
+            name="email"
+            fullWidth
+            value={resetPasswordForm.values.email}
+            onChange={resetPasswordForm.handleChange}
+            color="success"
+            error={resetPasswordForm.touched.email && resetPasswordForm.errors.email !== undefined}
+            helperText={resetPasswordForm.touched.email && resetPasswordForm.errors.email}
+          />
+          <LoadingButton
+            type="submit"
+            fullWidth
+            size="large"
+            variant="contained"
+            sx={{ marginTop: 2 }}
+            loading={isResetPasswordRequest}
+          >
+            Reset Password
+          </LoadingButton>
+        </>
+      )}
+
+
 
       <LoadingButton
         type="submit"

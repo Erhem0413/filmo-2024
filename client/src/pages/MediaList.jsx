@@ -103,12 +103,12 @@ const MediaList = () => {
     dispatch,
     selectedGenre
   ]);
-  const onCategoryChange = (categoryIndex) => {
-    if (currCategory === categoryIndex) return;
-    setMedias([]);
-    setCurrPage(1);
-    setCurrCategory(categoryIndex);
-  };
+  // const onCategoryChange = (categoryIndex) => {
+  //   if (currCategory === categoryIndex) return;
+  //   setMedias([]);
+  //   setCurrPage(1);
+  //   setCurrCategory(categoryIndex);
+  // };
   console.log("MEDIAS",medias);
 
   const onLoadMore = () => setCurrPage(currPage + 1);
