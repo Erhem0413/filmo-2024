@@ -108,7 +108,7 @@ const SigninForm = ({ switchAuthState }) => {
         <Alert severity="success">Reset password link sent to your email</Alert>
       ) : (
         <>
-          <TextField
+          {/* <TextField
             type="email"
             placeholder="Email"
             name="email"
@@ -118,8 +118,8 @@ const SigninForm = ({ switchAuthState }) => {
             color="success"
             error={resetPasswordForm.touched.email && resetPasswordForm.errors.email !== undefined}
             helperText={resetPasswordForm.touched.email && resetPasswordForm.errors.email}
-          />
-          <LoadingButton
+          /> */}
+          {/* <LoadingButton
             type="submit"
             fullWidth
             size="large"
@@ -128,7 +128,7 @@ const SigninForm = ({ switchAuthState }) => {
             loading={isResetPasswordRequest}
           >
             Reset Password
-          </LoadingButton>
+          </LoadingButton> */}
         </>
       )}
 
